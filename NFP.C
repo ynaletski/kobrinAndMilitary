@@ -21,8 +21,8 @@ char sw_ver[20]="N4.10 16 Feb 2018";  // COM0 COM1 COM2 COM3 COM4
 #endif
 */
 
-//10.06.2021 YN char sw_ver[20]="N3.26.08.08 Jun2011";
-char sw_ver[20]="N4 06 Jun 2021";
+//11.06.2021 YN char sw_ver[20]="N3.26.08.08 Jun2011";
+char sw_ver[20]="N4 11 Jun 2021";
  
 char sw_ver1[20]="N3.10. 15 Apr 2019";
 
@@ -1488,6 +1488,59 @@ struct dis_set_MMI ds_list1[]=
   1,
   T_INT,
 //-----------
+
+//11.06.2021 YN
+#if (PressureDrop == 1)
+  #if defined(PresenceLiquid)
+    list1_dsr,
+    169,               // "Сгн.'Фильтр' N вх."
+    &num_in16,
+    0,
+    KOL_INP,
+    T_INT,
+  //-----------
+    list1_dsr,
+    170,               // "Сгн.'Фильтр' фл.инв"
+    &mski_inp16,
+    0,
+    8,
+    T_INT,
+  #endif
+#elif (PressureDrop == 2)
+  #if defined(PresenceLiquid)
+    list1_dsr,
+    172,               // "Сгн.'Фильтр' N вх."
+    &num_in16,
+    0,
+    KOL_INP,
+    T_INT,
+  //-----------
+    list1_dsr,
+    173,               // "Сгн.'Фильтр' фл.инв"
+    &mski_inp16,
+    0,
+    8,
+    T_INT,
+  #endif
+#else
+  #if defined(PresenceLiquid)
+    list1_dsr,
+    166,               // "Сгн.'Фильтр' N вх."
+    &num_in16,
+    0,
+    KOL_INP,
+    T_INT,
+  //-----------
+    list1_dsr,
+    167,               // "Сгн.'Фильтр' фл.инв"
+    &mski_inp16,
+    0,
+    8,
+    T_INT,
+  #endif
+#endif
+
+
 //-----------
   NULL,
   0,

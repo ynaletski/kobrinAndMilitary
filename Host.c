@@ -2375,6 +2375,15 @@ struct dis_set  ds_mks[]=
   0,
   KOL_INP,
   T_INT,
+
+  //11.06.2021 YN
+  #if defined(PresenceLiquid)
+  &num_in16,
+  0,
+  KOL_INP,
+  T_INT,
+  #endif
+
 //----------------
 //----------------
 };
@@ -2456,6 +2465,15 @@ struct dis_set  ds_mki[]=
   0,
   255,
   T_INT,
+
+  //11.06.2021 YN
+  #if defined(PresenceLiquid)
+  &mski_inp16,
+  0,
+  255,
+  T_INT,
+  #endif
+
 /*----------------*/
 };
 //----------------------
@@ -7637,6 +7655,14 @@ printf("\nТрап не в раб.позиции ");
       case CONS_E:
 printf("\nКонсоль не в раб.позиции ");
         break;
+
+//11.06.2021 YN
+  #if defined(PresenceLiquid)
+      case FILTER:
+  printf("\nФ-тр пуст. С-ма не заполн.");
+        break;
+  #endif
+
      }
 
      }

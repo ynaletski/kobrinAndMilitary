@@ -559,7 +559,14 @@ struct eee_dat EE_Dat[]=
 &fict_ftmp,sizeof( fict_ftmp ),
 &fict_ftmp,sizeof( fict_ftmp ),
 &fict_ftmp,sizeof( fict_ftmp ),
+
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+&num_in16   ,sizeof(num_in16  ),
+&mski_inp16  ,sizeof(mski_inp16  ),
+#else
 &fict_ftmp,sizeof( fict_ftmp ),
+#endif
 
 //10.06.2021 YN
 #if (PressureDrop == 1)

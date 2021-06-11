@@ -251,6 +251,18 @@ int i;
                 }
               }
 
+              //11.06.2021 YN
+              #if defined(PresenceLiquid)
+              if( FILTER_FULL==0)
+              {
+               if((i+8)< 30)
+                {
+                 MmiGotoxy(i,row); MmiPuts(" Ф-Рпуст");
+                 i+=8;
+                }
+              }
+              #endif
+
     if( valve_mode != 0)
     {
               if( ES_IN_L==0)
@@ -345,6 +357,18 @@ int i;
                 i+=4;
                }
               }
+
+              //11.06.2021 YN
+              #if defined(PresenceLiquid)
+              if( FILTER_FULL==0)
+              {
+               if((i+8)< 30)
+                {
+                 MmiGotoxy(i,row); MmiPuts(" Ф-Рпуст");
+                 i+=8;
+                }
+              }   
+              #endif
 
     if( valve_modeL != 0)
     {
@@ -775,6 +799,15 @@ MmiGotoxy(0,i1++); MmiPrintf("Трап не в раб.позиции ");
 MmiGotoxy(0,i1++); MmiPrintf("Консоль не в раб.позиции ");
         if(i1 >= n_mmi_str) return;
         break;
+
+//11.06.2021 
+#if defined(PresenceLiquid)
+      case FILTER:
+MmiGotoxy(0,i1++); MmiPrintf("   Система не заполнена  ");
+        if(i1 >= n_mmi_str) return;
+        break;
+#endif
+        
      }
     }
     if(itmp & MVD_cfg )
@@ -2474,6 +2507,13 @@ char *list1_dsr[]={
 "Перепад  N анлг.вх",     //166
 "Перепад шкала, МПа",      //167
 "Перепад смеще. МПа",       //168
+
+  //11.06.2021 YN
+  #if defined(PresenceLiquid)
+  "Сгн.'Фильтр' N вх.",      //169
+  "Сгн.'Фильтр' фл.инв",     //170
+  #endif
+
 #elif (PressureDrop == 2)
 "Давл.пер N анлг.вх",     //166
 "Давл.пос N анлг.вх",     //167
@@ -2481,6 +2521,21 @@ char *list1_dsr[]={
 "P-до смещение, МПа",      //169
 "P-посл шкала,  МПа",     //170
 "P-посл смещ.,  МПа",     //171
+
+  //11.06.2021 YN
+  #if defined(PresenceLiquid)
+  "Сгн.'Фильтр' N вх.",      //172
+  "Сгн.'Фильтр' фл.инв",     //173
+  #endif
+
+#else
+
+  //11.06.2021 YN
+  #if defined(PresenceLiquid)
+  "Сгн.'Фильтр' N вх.",      //166
+  "Сгн.'Фильтр' фл.инв",     //167
+  #endif
+
 #endif
 
 "",
@@ -5390,6 +5445,15 @@ m220:
        MmiPuts("1");
      else
        MmiPuts("0");
+
+     //11.06.2021 YN
+     #if defined(PresenceLiquid)
+      MmiGotoxy(23,6); MmiPuts("ФИЛЬТР");
+     if(FILTER_FULL)
+       MmiPuts("1");
+     else
+       MmiPuts("0");
+     #endif
 
 //-------------------
      MmiGotoxy(0 ,8); MmiPuts("СТАРТ.Н=");

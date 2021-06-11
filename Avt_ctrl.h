@@ -10,9 +10,15 @@
 #define O_SH_IN  msk_int[num_in8]
 */
 
-
 #define KOL_INP (28)
+
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+#define KOL_D_INP (16)
+#else
 #define KOL_D_INP (15)
+#endif
+
 //     1  2  3 4 5  6  7  8  9  10  11  12
 // MKS 2 11 14 1 0 12 13  4 11   5   0   3 1
 
@@ -34,9 +40,19 @@
 #define IN_CLS_L   f_ik(14)
 #define IN_CLS_H   f_ik(15)
 
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+#define FILTER_FULL f_ik(16)
+#endif
 
-#define INP_MSK_OK_v   (0x23b)
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+#define INP_MSK_OK_v_L (0x2ca)
+#define INP_MSK_OK_v   (0x27b)
+#else
 #define INP_MSK_OK_v_L (0x28a)
+#define INP_MSK_OK_v   (0x23b)
+#endif
 
 #define UZA_E    2
 #define LVL_E    3
@@ -45,6 +61,11 @@
 #define TRAP_E   7
 #define ID_E     8
 #define STOP_H   9
+
+//11.06.2021 YN 
+#if defined(PresenceLiquid)
+#define FILTER 4
+#endif
 
 #define OUT1 msk_int[num_out1]
 #define OUT2 msk_int[num_out2]
@@ -196,6 +217,12 @@ extern int num_in9 ,num_in10 ;
 extern int num_in11,num_in12 ;
 extern int num_in13,num_in14 ;
 extern int num_in15 ;
+
+//11.06.2021 YN 
+#if defined(PresenceLiquid)
+extern int num_in16;
+#endif
+
 void f_var_i();
 
 extern unsigned int INP_MSK_OK_L;
@@ -212,5 +239,3 @@ void f_tst(int ii);
 void f_tst1(int ii);
 void f_tst2(int ii);
 extern int fl_GO_t;
-
-

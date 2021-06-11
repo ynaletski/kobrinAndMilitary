@@ -84,6 +84,11 @@ int num_in13 =1;     //  O_SH_IN
 int num_in14 = 0;    //  Клапан нижнего налива закрыт
 int num_in15 = 0;    //  Клапан верхнего налива закрыт
 
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+int num_in16  = 5;   //  FILTER_FULL
+#endif
+
 //---------------------------
   // Дискретные входы-выходы
  //  " MKS 8 2 1 3 4 5 6"
@@ -160,6 +165,12 @@ int *num_pnt[KOL_D_INP+1]={&fict_npn,
 &num_in1,&num_in2,&num_in3,&num_in4,&num_in5,&num_in6,&num_in7,&num_in8,
 &num_in9,&num_in10,&num_in11,&num_in12,&num_in13,
 &num_in14,&num_in15,
+
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+&num_in16,
+#endif
+
 //&num_in16,&num_in17,&num_in18,
 };
 //---------------------------
@@ -199,6 +210,12 @@ int itmp=0;
    if(CONS_IN   ) itmp |=0x10; //D4   - консоль,                            1 - ok
    if(TRAP_IN   ) itmp |=0x20; //D5   - трап,                               1 - ok
 // if(          ) itmp |=0x40; //D6 = 0
+
+   //11.06.2021 YN
+   #if defined(PresenceLiquid)
+   if(FILTER_FULL) itmp |=0x40;//D6   - наличие среды в фильтре          1 - ok
+   #endif
+
    if(LVL_IN_L  ) itmp |=0x80; //D7 = - контроллер ограничения наполнения нижнего налива, 1 - ok
 
    if(STRT_IN_L ) itmp |=0x100;//D8   - кнопка "Start" нижнего налива       1 - кнопка нажата
@@ -271,7 +288,7 @@ void (*f_Drive_Run)()=f_fict_run;
 
 //10.06.2021 YN
 #if (PressureDrop == 1)
-   //15.02.2021 YN 3,4 -> 0,0
+   // 3,4 -> 0,0
    //             температура
    //          давление | давлениеФильтра
    //                 | | |
@@ -279,7 +296,7 @@ void (*f_Drive_Run)()=f_fict_run;
    float analog_scale[8]={1./NA_scale,250./NA_scale,1./NA_scale,1,1,1,1,1};
 #elif (PressureDrop == 2)
    //                        давление после
-   //15.02.2021 YN 3,4 -> 0,0 |
+   // 3,4 -> 0,0 |
    //             температура
    //          давление | давление до
    //                 | | | |
@@ -366,6 +383,12 @@ char list_avt[][32]={
 "     Нажата кнопка =STOP=     ",//33
 "       ID не корректен        ",//34
 "       по команде Host        ",//35
+
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+"     Система не заполнена     ",//36
+#endif
+
 };
 
 char *list_rcv[]={
@@ -594,6 +617,19 @@ m_err:
        MmiGotoxy(0,1);    MmiPuts(list_avt[14]);
        goto m_err;
     }
+
+   //11.06.2021 YN
+   #if defined(PresenceLiquid)
+   if( (FILTER_FULL)==0 )
+    {
+       flagE_UZA=FILTER;
+       f_icp_errS(UZA_off);
+//     MmiGotoxy(0,1);    MmiPuts("    Система не заполнена   ");
+       MmiGotoxy(0,1);    MmiPuts(list_avt[36]);
+       goto m_err;
+    }
+   #endif
+    
   }
  else
  {  // нижний налив
@@ -637,6 +673,18 @@ m_err:
        MmiGotoxy(0,1);    MmiPuts(list_avt[9]);
        goto m_err;
     }
+
+   //11.06.2021 YN
+   #if defined(PresenceLiquid)
+   if( (FILTER_FULL)==0 )
+    {
+       flagE_UZA=FILTER;
+       f_icp_errS(UZA_off);
+//     MmiGotoxy(0,1);    MmiPuts("    Система не заполнена   ");
+       MmiGotoxy(0,1);    MmiPuts(list_avt[36]);
+       goto m_err;
+    }
+   #endif
 
  }
 

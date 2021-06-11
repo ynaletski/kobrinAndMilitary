@@ -308,6 +308,15 @@ int fl_err_new;
         case ID_E  :
                Reg_err = ID_sb;
                break;
+
+        //11.06.2021 YN
+        #if defined(PresenceLiquid)
+        case FILTER  :
+               Reg_err = ID_sb;
+               break;
+        #endif
+
+
         default : break;
        }
       }
