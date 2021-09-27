@@ -938,13 +938,13 @@ void  f_en_reg_valv()
  }
  else
  {    // нижний налив
-  if(valve_mode==2)
+  if(valve_modeL==2) //27.09.2021 YN was: if(valve_mode==2)
   {
     if(State_UpDn == HOLD)  i_dens &= ~(OUT6);            // нормальноотокрытый включен
     else if(State_UpDn == UP ) ;                          // оба включены
     else if(State_UpDn == DN )   i_dens &= ~(OUT5|OUT6);  // оба выключены
   }
-  else if(valve_mode==3)
+  else if(valve_modeL==3) //27.09.2021 YN was: if(valve_mode==3)
   {
     if(State_UpDn == HOLD)  i_dens &= ~(OUT6);     // оба OUT5=1,OUT6=0 - оба контактора выключены
     else if(State_UpDn == UP ) ;                        //  OUT5=1,OUT6=1      контактор "ОТКР"=1, "ЗАКР"=0

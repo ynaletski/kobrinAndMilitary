@@ -833,6 +833,10 @@ m_err_mvd:
       f_enable_cnt();
     // запретить открывание клапанов
       Out_en =  ~(OUT1 | OUT2);
+
+      //27.09.2021 YN
+      Out_en =  ~(OUT5 | OUT6);
+
 //  time_beg_fill=TimeStamp;
 //  beg_flch=0;
 //  flag_flch=0;

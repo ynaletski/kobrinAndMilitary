@@ -22,7 +22,8 @@ char sw_ver[20]="N4.10 16 Feb 2018";  // COM0 COM1 COM2 COM3 COM4
 */
 
 //11.06.2021 YN char sw_ver[20]="N3.26.08.08 Jun2011";
-char sw_ver[20]="N4 11 Jun 2021";
+//27.09.2021 YN char sw_ver[20]="N4 11 Jun 2021";
+char sw_ver[20]="N4.1 27 Sep 2021";
  
 char sw_ver1[20]="N3.10. 15 Apr 2019";
 

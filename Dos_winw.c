@@ -467,7 +467,7 @@ void f_prn_proc()
                 MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ",Temp_a);
                 MmiGotoxy(0,10); MmiPuts( str_empt );
                 MmiGotoxy(0,11); MmiPuts( str_empt );
-                MmiGotoxy(0,12); MmiPrintf("Давление      %8.3f МПа     ",s_MVD[0].Press);
+                MmiGotoxy(0,12); MmiPrintf("Давление     %8.3f МПа     ",s_MVD[0].Press);
               }
               else
 #endif
@@ -484,6 +484,13 @@ void f_prn_proc()
                 }
                 MmiGotoxy(0,11); MmiPrintf("Расход       %8.1f л/ч       ",s_MVD[0].FlowV);
                 MmiGotoxy(0,12); MmiPrintf("Давление     %8.3f МПа       ",s_MVD[0].Press);
+
+                //27.09.2021 YN
+                #if (PressureDrop == 1)
+                  MmiGotoxy(0,13);  MmiPrintf("Перепад      %8.3f МПа       ",Press_Drop);
+                #elif (PressureDrop == 2)
+                  MmiGotoxy(0,13);  MmiPrintf("Перепад      %8.3f МПа       ",P_diff);
+                #endif
               }
             }
           }

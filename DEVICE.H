@@ -6,7 +6,7 @@
 #define ICP_TSD
 //#define TSD_GLB
 #define ICP_7060
-//#define ICP_7041
+#define ICP_7041
 #define RTU_MVD
 #define ICP_7017C
 //#define RTU_Delta
@@ -17,13 +17,13 @@
 //#define MMI_ICP
 
 #define RTU_OFP
-#define Shtray (0)
+#define Shtray (0) //1-военные, 0-Кобрин
 
-//10.6.2021 YN
-                          // 1 - перепадчик даавления на фильтре
-#define PressureDrop (2)  // 2 - два датчика давления до/после фильтра
+//10.06.2021 YN
+                          // 1 - перепадчик даавления на фильтре (Кобрин)
+#define PressureDrop (1)  // 2 - два датчика давления до/после фильтра (Военные)
                           //   - закоментировать если отсутствуют 
 
 //11.06.2021 YN
-#define PresenceLiquid // наличие среды в фильтре (дискретный сигнал)
+#define PresenceLiquid // наличие среды в фильтре (дискретный сигнал)     //(Военные и Кобрин) 
                         // закоментировать если отсутствует

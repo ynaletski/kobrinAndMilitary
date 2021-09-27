@@ -1,11 +1,13 @@
 {
     "files.associations": {
+        "*.C": "c",
         "I7041.C": "cpp",
         "I7060.C": "cpp",
         "DOS_WIN.C": "cpp",
         "DOS_PMP.C": "cpp",
         "NFP.C": "cpp",
         "7017C.C": "cpp",
-        "mmi_new.C": "cpp"
+        "mmi_new.C": "cpp",
+        "DEVICE.H": "cpp"
     }
 }
