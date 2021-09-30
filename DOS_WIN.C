@@ -187,12 +187,15 @@ void f_prn_slv1()
         if(dose_dlvr != vBIG_P)
          {
           if ( Flag_mass != 0 )
-            MmiPrintf(" β―γαª  %g ª£",dose_dlvr);
+            //30.09.2021 YN was: MmiPrintf(" β―γαª  %g ª£",dose_dlvr);
+            MmiPrintf("€‘%d β―γαª  %g ª£",n_ASN,dose_dlvr);
           else
-            MmiPrintf(" β―γαª  %g « ",dose_dlvr);
+            //30.09.2021 YN was: MmiPrintf(" β―γαª  %g « ",dose_dlvr);
+            MmiPrintf("€‘%d β―γαª  %g « ",n_ASN,dose_dlvr);
          }
         else
-           MmiPrintf(" β―γαª ΅¥§ ¤®§λ");
+           //30.09.2021 YN was: MmiPrintf(" β―γαª ΅¥§ ¤®§λ");
+           MmiPrintf("€‘%d β―γαª ΅¥§ ¤®§λ", n_ASN);
 
        f_prn_mode();
        MmiGotoxy(0,6);  MmiPuts("ESC - ‘’");

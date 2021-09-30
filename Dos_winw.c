@@ -187,12 +187,15 @@ void f_prn_slv1()
         if(dose_dlvr != vBIG_P)
          {
           if ( Flag_mass != 0 )
-            MmiPrintf(" Отпуск  %g кг",dose_dlvr);
+            //30.09.2021 YN was: MmiPrintf(" Отпуск  %g кг",dose_dlvr);
+            MmiPrintf("АСН%d Отпуск  %g кг",n_ASN,dose_dlvr);
           else
-            MmiPrintf(" Отпуск  %g л ",dose_dlvr);
+            //30.09.2021 YN was: MmiPrintf(" Отпуск  %g л ",dose_dlvr);
+            MmiPrintf("АСН%d Отпуск  %g л ",n_ASN,dose_dlvr);
          }
         else
-           MmiPrintf(" Отпуск без дозы");
+           //30.09.2021 YN was: MmiPrintf(" Отпуск без дозы");
+           MmiPrintf("АСН%d Отпуск без дозы", n_ASN);
 
        f_prn_mode();
        MmiGotoxy(0,6);  MmiPuts("ESC - СТОП");
