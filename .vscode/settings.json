@@ -8,6 +8,12 @@
         "NFP.C": "cpp",
         "7017C.C": "cpp",
         "mmi_new.C": "cpp",
-        "DEVICE.H": "cpp"
+        "DEVICE.H": "cpp",
+        "7017C.H": "cpp",
+        "7188XA.H": "cpp",
+        "ALL.H": "cpp",
+        "ARCH.H": "cpp",
+        "COR_ADC.H": "cpp",
+        "DELTA.H": "cpp"
     }
 }

@@ -1612,8 +1612,8 @@ int f_stop_dlv()
 { // return 1 - error, 0 - OK
     if(sw_dlv_liq==3)
     {
-       MmiGotoxy(0,0);   MmiPuts(list_avt[30]);  //" Отпуск остановлен            ",//30
-       MmiGotoxy(0,1);   MmiPuts(list_avt[35]);  //"      по команде Host   =     ",//35
+       MmiGotoxy(0,1);   MmiPuts(list_avt[30]);  //" Отпуск остановлен            ",//30
+       MmiGotoxy(0,2);   MmiPuts(list_avt[35]);  //"      по команде Host   =     ",//35
        State_SLV=Cmd_brk;
        result_dlv=2; //  Команда Host
 
