@@ -842,15 +842,14 @@ m_err_mvd:
 //  flag_flch=0;
       time_t_swtch=TimeStamp;
       MmiGotoxy(0,0);
-       if(dose_dlvr != vBIG_P)
-        {
+      if(dose_dlvr != vBIG_P)
+      {
          if ( Flag_mass != 0 )
-           MmiPrintf("€‘%d.β―.¤®§λ %g ª£         ",n_ASN,dose_dlvr);
+            MmiPrintf("€‘%d.β―.¤®§λ %g ª£         ",n_ASN,dose_dlvr);
          else
            MmiPrintf("€‘%d.β―.¤®§λ %g «          ",n_ASN,dose_dlvr);
-
-        }
-       else
+      }
+      else
          MmiPrintf("€‘%d.β―γαª ΅¥§ ¤®§¨ΰ®Άª¨      ",n_ASN);
 
        f_prn_mode();

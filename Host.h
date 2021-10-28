@@ -220,6 +220,10 @@ extern int Sl3_fl_jrn_e   ;
 
 extern int n_ASN;
 
-extern int MVD_fl_ord[];
+//27.10.2021 YN
+#if defined(N_Pipes)
+extern int n_pipe_l;
+extern int n_pipe_h;
+#endif
 
-
+extern int MVD_fl_ord[];

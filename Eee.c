@@ -8,7 +8,7 @@ int fict_itmp=0;
 int fict_sv=0;
 int fict_int1=1;
 
-// ‘¯¨á®ª ¯ à ¬¥âà®¢ á®åà ­ï¥¬ëå ¢ EEPROM
+// ï¿½ï¿½ï¿½á®ª ï¿½ï¿½à ¬ï¿½ï¿½à®¢ ï¿½ï¿½à ­ï¥¬ï¿½ï¿½ ï¿½ EEPROM
 struct eee_dat EE_Dat[]=
 {
 &ComBaud[0],sizeof(ComBaud[0]),
@@ -389,7 +389,14 @@ struct eee_dat EE_Dat[]=
 &fict_ftmp      ,sizeof(fict_ftmp      ),
 &fict_ftmp      ,sizeof(fict_ftmp      ),
 &fict_itmp      ,sizeof(fict_itmp      ),
+
+//27.10.2021 YN
+#if defined(N_Pipes)
+&n_pipe_l       ,sizeof( n_pipe_l      ),
+&n_pipe_h       ,sizeof( n_pipe_h      ),
+#else
 &fict_ftmp      ,sizeof(fict_ftmp      ),
+#endif
 
 &TimDensOff     ,sizeof(TimDensOff     ),
 &TimDensOn      ,sizeof(TimDensOn      ),
@@ -874,7 +881,7 @@ unsigned long int Ee_summ;
         }
 
      ee_lgth_byte=i1;
-//  printf("\n\rf_chk_EEE_CRC: %d § ¯¨á¥©,%d¡ ©â,CRC_count=%08lx,CRC_rd%08lx\n\r",i,i1,Ee_summ,Eeprom_summ);
+//  printf("\n\rf_chk_EEE_CRC: %d ï¿½ï¿½ï¿½ï¿½á¥©,%dï¿½ï¿½ï¿½ï¿½,CRC_count=%08lx,CRC_rd%08lx\n\r",i,i1,Ee_summ,Eeprom_summ);
    if(Ee_summ != Eeprom_summ) return -100;
    return 0;
 }

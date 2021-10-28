@@ -842,15 +842,14 @@ m_err_mvd:
 //  flag_flch=0;
       time_t_swtch=TimeStamp;
       MmiGotoxy(0,0);
-       if(dose_dlvr != vBIG_P)
-        {
+      if(dose_dlvr != vBIG_P)
+      {
          if ( Flag_mass != 0 )
-           MmiPrintf("АСН%d.Отп.дозы %g кг         ",n_ASN,dose_dlvr);
+            MmiPrintf("АСН%d.Отп.дозы %g кг         ",n_ASN,dose_dlvr);
          else
            MmiPrintf("АСН%d.Отп.дозы %g л          ",n_ASN,dose_dlvr);
-
-        }
-       else
+      }
+      else
          MmiPrintf("АСН%d.Отпуск без дозировки      ",n_ASN);
 
        f_prn_mode();

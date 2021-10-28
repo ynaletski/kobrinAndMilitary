@@ -4060,7 +4060,21 @@ struct dis_set  ds_slv[]=
   0,
   BIG_P,
   T_INT_L,
+//----------------
+
+//27.10.2021 YN
+#if defined(N_Pipes)
+  &n_pipe_l,
+  0,
+  BIG_P,
+  T_INT,
+//----------------
+  &n_pipe_h,
+  0,
+  BIG_P,
+  T_INT,
 /*----------------*/
+#endif
 
 /*
 //----------------
@@ -5200,7 +5214,13 @@ m1:
 //---------------------------------
       if (!strcmp(intrpr.wrd,"SLV" ))
         {   //'SLV'
-          f_dis_set(ds_slv,3,6);
+
+          //27.10.2021 YN
+          #if defined(N_Pipes)
+            f_dis_set(ds_slv,3,8);
+          #else
+            f_dis_set(ds_slv,3,6);
+          #endif
 //        f_init_Fl_m();
           goto fin;
         }

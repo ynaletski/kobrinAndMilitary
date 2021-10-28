@@ -821,7 +821,26 @@ struct dis_set_MMI ds_list1[]=
   0,
   BIG_P,
   T_INT,
-//----4-----------
+//----------------
+
+//27.10.2021 YN
+#if defined(N_Pipes)
+  list1_dsr,
+  177,                //"N трубы нижн.налива "
+  &n_pipe_l,
+  0,
+  BIG_P,
+  T_INT,
+//----------------
+  list1_dsr,
+  178,                //"N трубы верхн.налива"
+  &n_pipe_h,
+  0,
+  BIG_P,
+  T_INT,
+//----------------
+#endif
+
   list1_dsr,
   7,
   &valve_modeL ,     // LOW mode
@@ -912,21 +931,21 @@ struct dis_set_MMI ds_list1[]=
 //10.06.2021 YN
 #if(PressureDrop == 1)
   list1_dsr,
-  167,
+  167,            //"Перепад шкала, МПа"
   &ftmp_naMMI[2],
   -BIG_P,
   BIG_P,
   T_FLOAT,
 #elif (PressureDrop == 2)
   list1_dsr,
-  168,
+  171,            //"P-до полн шкал,МПа"
   &ftmp_naMMI[2],
   -BIG_P,
   BIG_P,
   T_FLOAT,
 //-----------
   list1_dsr,
-  170,
+  173,            //"P-посл шкала,  МПа"
   &ftmp_naMMI[3],
   -BIG_P,
   BIG_P,
@@ -952,21 +971,21 @@ struct dis_set_MMI ds_list1[]=
 //10.06.2021 YN
 #if(PressureDrop == 1)
   list1_dsr,
-  168,
+  168,                //"Перепад смеще. МПа"
   &analog_offset[2],
   -BIG_P,
   BIG_P,
   T_FLOAT,
 #elif (PressureDrop == 2)
   list1_dsr,
-  169,
+  172,                //"P-до смещение, МПа"
   &analog_offset[2],
   -BIG_P,
   BIG_P,
   T_FLOAT,
 /*----------------*/
   list1_dsr,
-  171,
+  174,                //"P-посл смещ.,  МПа"
   &analog_offset[3],
   -BIG_P,
   BIG_P,
@@ -1113,21 +1132,21 @@ struct dis_set_MMI ds_list1[]=
 //10.06.2021 YN
 #if (PressureDrop == 1)
   list1_dsr,
-  166,               // Перепадчик N анлг.вх
+  166,               // Перепад N анлг.вх
   &analog_num[2],
   0,
   8,
   T_INT,
 #elif (PressureDrop == 2)
   list1_dsr,
-  166,               // Давл.перед N анлг.вх
+  169,               // Давл.перед N анлг.вх
   &analog_num[2],
   0,
   8,
   T_INT,
   //-----------
   list1_dsr,
-  167,               // Давл.после N анлг.вх
+  170,               // Давл.после N анлг.вх
   &analog_num[4],
   0,
   8,
@@ -1491,54 +1510,20 @@ struct dis_set_MMI ds_list1[]=
 //-----------
 
 //11.06.2021 YN
-#if (PressureDrop == 1)
-  #if defined(PresenceLiquid)
-    list1_dsr,
-    169,               // "Сгн.'Фильтр' N вх."
-    &num_in16,
-    0,
-    KOL_INP,
-    T_INT,
-  //-----------
-    list1_dsr,
-    170,               // "Сгн.'Фильтр' фл.инв"
-    &mski_inp16,
-    0,
-    8,
-    T_INT,
-  #endif
-#elif (PressureDrop == 2)
-  #if defined(PresenceLiquid)
-    list1_dsr,
-    172,               // "Сгн.'Фильтр' N вх."
-    &num_in16,
-    0,
-    KOL_INP,
-    T_INT,
-  //-----------
-    list1_dsr,
-    173,               // "Сгн.'Фильтр' фл.инв"
-    &mski_inp16,
-    0,
-    8,
-    T_INT,
-  #endif
-#else
-  #if defined(PresenceLiquid)
-    list1_dsr,
-    166,               // "Сгн.'Фильтр' N вх."
-    &num_in16,
-    0,
-    KOL_INP,
-    T_INT,
-  //-----------
-    list1_dsr,
-    167,               // "Сгн.'Фильтр' фл.инв"
-    &mski_inp16,
-    0,
-    8,
-    T_INT,
-  #endif
+#if defined(PresenceLiquid)
+  list1_dsr,
+  175,               // "Сгн.'Фильтр' N вх."
+  &num_in16,
+  0,
+  KOL_INP,
+  T_INT,
+//-----------
+  list1_dsr,
+  176,               // "Сгн.'Фильтр' фл.инв"
+  &mski_inp16,
+  0,
+  8,
+  T_INT,
 #endif
 
 

@@ -9,6 +9,11 @@
 int n_pp=0;
 int n_ASN=0;
 
+//27.10.2021 YN
+#if defined(N_Pipes)
+int n_pipe_l=0;
+int n_pipe_h=0;
+#endif
 
 #if defined(MMI_NEW)
 
@@ -104,7 +109,25 @@ void  f_prn_begin()
             //  MmiPrintf("                              ");
 
 #if defined(MMI_NEW)
-  MmiGotoxy(0,0);  MmiPrintf("АСН %d.",n_ASN);
+
+  //27.10.2021 YN
+  #if defined(N_Pipes)
+    if(valve_mode && valve_modeL) 
+    {
+      MmiGotoxy(0,0);  MmiPrintf("АСН %d-%d-%d.",n_ASN,n_pipe_h,n_pipe_l);
+    }
+    else if(valve_mode==0)
+    {
+      MmiGotoxy(0,0);  MmiPrintf("АСН %d-%d.",n_ASN,n_pipe_l);
+    }
+    else
+    {
+      MmiGotoxy(0,0);  MmiPrintf("АСН %d-%d.",n_ASN,n_pipe_h);
+    }
+  #else
+    MmiGotoxy(0,0);  MmiPrintf("АСН %d.",n_ASN);
+  #endif
+
   MmiGotoxy(1,1);  MmiPrintf("  Система учета отпуска  ");
   MmiGotoxy(1,2);  MmiPrintf("     нефтепродуктов ");
 
@@ -185,7 +208,7 @@ void f_prn_slv1()
 
         MmiGotoxy(0,0);
         if(dose_dlvr != vBIG_P)
-         {
+        {
           if ( Flag_mass != 0 )
             //30.09.2021 YN was: MmiPrintf(" Отпуск  %g кг",dose_dlvr);
             MmiPrintf("АСН%d Отпуск  %g кг",n_ASN,dose_dlvr);
@@ -194,8 +217,10 @@ void f_prn_slv1()
             MmiPrintf("АСН%d Отпуск  %g л ",n_ASN,dose_dlvr);
          }
         else
-           //30.09.2021 YN was: MmiPrintf(" Отпуск без дозы");
-           MmiPrintf("АСН%d Отпуск без дозы", n_ASN);
+        {
+          //30.09.2021 YN was: MmiPrintf(" Отпуск без дозы");
+          MmiPrintf("АСН%d Отпуск без дозы", n_ASN);
+        }
 
        f_prn_mode();
        MmiGotoxy(0,6);  MmiPuts("ESC - СТОП");
@@ -440,15 +465,42 @@ void f_prn_mode()
       if( Flag_Low == 0)
       {
         MmiGotoxy(22,0);
-        MmiPuts(" ВЕРХНИЙ        ");
+
+        //27.10.2021 YN
+        #if defined(N_Pipes)
+          MmiPrintf(" ВЕРХ-%d        ",n_pipe_h);
+        #else
+          MmiPuts(" ВЕРХНИЙ        ");
+        #endif
+
       }
       else if( Flag_Low == 1)
       {
-        MmiGotoxy(23,0);
-        MmiPuts(" НИЖНИЙ         ");
+        MmiGotoxy(22,0);
+
+        //27.10.2021 YN
+        #if defined(N_Pipes)
+          MmiPrintf(" НИЖН-%d         ",n_pipe_l);
+        #else
+          MmiPuts(" НИЖНИЙ         ");
+        #endif
+
       }
    }
 
+   //27.10.2021 YN
+   #if defined(N_Pipes)
+    else if(valve_mode)
+    {
+      MmiGotoxy(22,0);
+      MmiPrintf(" ВЕРХ-%d        ",n_pipe_h);
+    }
+    else
+    {
+      MmiGotoxy(22,0);
+      MmiPrintf(" НИЖН-%d         ",n_pipe_l);
+    }
+   #endif
 
 }
 //-------------------------------------
@@ -2515,37 +2567,46 @@ char *list1_dsr[]={
 //10.06.2021 YN
 #if (PressureDrop == 1)
 "Перепад  N анлг.вх",     //166
-"Перепад шкала, МПа",      //167
-"Перепад смеще. МПа",       //168
-
-  //11.06.2021 YN
-  #if defined(PresenceLiquid)
-  "Сгн.'Фильтр' N вх.",      //169
-  "Сгн.'Фильтр' фл.инв",     //170
-  #endif
-
-#elif (PressureDrop == 2)
-"Давл.пер N анлг.вх",     //166
-"Давл.пос N анлг.вх",     //167
-"P-до полн шкал,МПа",      //168
-"P-до смещение, МПа",      //169
-"P-посл шкала,  МПа",     //170
-"P-посл смещ.,  МПа",     //171
-
-  //11.06.2021 YN
-  #if defined(PresenceLiquid)
-  "Сгн.'Фильтр' N вх.",      //172
-  "Сгн.'Фильтр' фл.инв",     //173
-  #endif
-
+"Перепад шкала, МПа",     //167
+"Перепад смеще. МПа",     //168
 #else
+"",                       //166
+"",                       //167
+"",                       //168
+#endif
 
-  //11.06.2021 YN
-  #if defined(PresenceLiquid)
-  "Сгн.'Фильтр' N вх.",      //166
-  "Сгн.'Фильтр' фл.инв",     //167
-  #endif
+#if(PressureDrop == 2)
+"Давл.пер N анлг.вх",     //169
+"Давл.пос N анлг.вх",     //170
+"P-до полн шкал,МПа",     //171
+"P-до смещение, МПа",     //172
+"P-посл шкала,  МПа",     //173
+"P-посл смещ.,  МПа",     //174
+#else
+"",                       //169
+"",                       //170
+"",                       //171
+"",                       //172
+"",                       //173
+"",                       //174
+#endif
 
+//11.06.2021 YN
+#if defined(PresenceLiquid)
+"Сгн.'Фильтр' N вх.",      //175
+"Сгн.'Фильтр' фл.инв",     //176
+#else
+"",                        //175
+"",                        //176
+#endif
+
+//27.10.2021 YN
+#if defined(N_Pipes)
+"N трубы ниж.налива",    //177
+"N трубы вер.налива",    //178
+#else
+"",                        //177
+"",                        //178
 #endif
 
 "",
@@ -2829,8 +2890,24 @@ m_120p:
 #endif
           PassW=0;
 
-
-            MmiGotoxy(0,0);  MmiPrintf("АСН %d.   Меню",n_ASN);
+            //27.10.2021 YN
+            #if defined(N_Pipes)
+              if(valve_mode && valve_modeL) 
+              {
+                MmiGotoxy(0,0);  MmiPrintf("АСН %d-%d-%d.   Меню",n_ASN,n_pipe_h,n_pipe_l);
+              }
+              else if(valve_mode==0)
+              {
+                MmiGotoxy(0,0);  MmiPrintf("АСН %d-%d.   Меню",n_ASN,n_pipe_l);
+              }
+              else
+              {
+                MmiGotoxy(0,0);  MmiPrintf("АСН %d-%d.   Меню",n_ASN,n_pipe_h);
+              }
+            #else
+              MmiGotoxy(0,0);  MmiPrintf("АСН %d.   Меню",n_ASN);
+            #endif
+            //MmiGotoxy(0,0);  MmiPrintf("АСН %d.   Меню",n_ASN);
 
             MmiGotoxy(0,2);
 
@@ -3495,8 +3572,14 @@ m_m5_01:
 
     if( (valve_mode > 0) && (valve_modeL > 0 ))
     {
-          MmiGotoxy(0,4);    MmiPuts("1 Задать дозу верхнего налива");
-          MmiGotoxy(0,6);    MmiPuts("2 Задать дозу нижнего  налива");
+          //27.10.2021 YN
+          #if defined(N_Pipes)
+            MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу верх.налива(%d)",n_pipe_h);
+            MmiGotoxy(0,6);    MmiPrintf("2 Задать дозу нижн.налива(%d)",n_pipe_l);
+          #else
+            MmiGotoxy(0,4);    MmiPuts("1 Задать дозу верхнего налива");
+            MmiGotoxy(0,6);    MmiPuts("2 Задать дозу нижнего  налива");
+          #endif
 
           if((flag_prn_mass != 0) && (dose_dlvr > 0) )
           {  MmiGotoxy(0,8);
@@ -3527,7 +3610,19 @@ m_m5_01:
     }
     else
     {
-          MmiGotoxy(0,4);    MmiPuts("1 Задать дозу ");
+          //27.10.2021 YN
+          #if defined(N_Pipes)
+            if(valve_mode) 
+            {
+              MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу. Труба N%d ",n_pipe_h);
+            }
+            else
+            {
+              MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу. Труба N%d ",n_pipe_l);
+            }
+          #else
+            MmiGotoxy(0,4);    MmiPuts("1 Задать дозу ");
+          #endif
 
           if((flag_prn_mass != 0)   && (dose_dlvr > 0))
           {  MmiGotoxy(0,8);
