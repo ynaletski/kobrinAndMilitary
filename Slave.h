@@ -211,4 +211,5 @@ extern  float SLT3_A;
 
 void f_mirr();
 
-
+//28.10.2021 YN
+extern int changeStateF1;

@@ -115,9 +115,9 @@ extern int CLP0;
 
 
 
-extern unsigned int OUT_VAR;  // состояние дискретных выходов
-extern unsigned int INP_VAR;  // состояние дискретных входов
-extern unsigned int INP_VAR_c;  // состояние дискретных входов
+extern unsigned int OUT_VAR;  // я┐╜я┐╜я┐╜яния┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ходя┐╜я┐╜
+extern unsigned int INP_VAR;  // я┐╜я┐╜я┐╜яния┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ходя┐╜я┐╜
+extern unsigned int INP_VAR_c;  // я┐╜я┐╜я┐╜яния┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ходя┐╜я┐╜
 
 extern int analog_num[];
 extern float analog_scale[];
@@ -131,9 +131,9 @@ extern float analog_offset[];
 #define  T_Mot_Stop (35000L)
 
 extern int fl_GO;
-extern int fl_EQ;     // флаг выравнивания давления через MVD
-extern int flagS_ES;  // признак останова по нажатию ES
-extern int flagS_UZA; // признак останова по отсутствию UZA
+extern int fl_EQ;     // флая┐╜ я┐╜я┐╜равя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜рез MVD
+extern int flagS_ES;  // я┐╜ризя┐╜я┐╜я┐╜ я┐╜я┐╜таня┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ ES
+extern int flagS_UZA; // я┐╜ризя┐╜я┐╜я┐╜ я┐╜я┐╜таня┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜твия┐╜ UZA
 extern int flag_dlv_fst;
 extern int flag_prn_mass;
 extern int flag_rcv_fst;

@@ -305,6 +305,14 @@ void f_cycle_cmn()
 int f_cycle()
 {  // основной цикл
 
+    //28.10.2021 YN
+    if(changeStateF1)
+    {
+      OUT_VAR ^= OUT7;
+      changeStateF1=0;
+    }
+
+
      f_cycle_cmn();
 
        if(flag_Slv != 0)

@@ -1,3 +1,5 @@
+//28.10.2021 YN
+int changeStateF1=0;
 
 //----------------------------------
 // данные принимаемые сверху
@@ -295,9 +297,12 @@ void *list_Slv_int[]={
 &Password,        // 169
 &Password_m,        // 170
 
+//28.10.2021 YN
+&changeStateF1,     // 171
+
 //10.06.2021 YN
 #if (PressureDrop == 2)
-  &Filter_for_slave, //171 Ошибка по фильтру / 1 - забит / 0 - норм
+  &Filter_for_slave, //172 Ошибка по фильтру / 1 - забит / 0 - норм
 #endif
 
 NULL                //
