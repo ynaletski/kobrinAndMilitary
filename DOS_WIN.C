@@ -2602,8 +2602,8 @@ char *list1_dsr[]={
 
 //27.10.2021 YN
 #if defined(N_Pipes)
-"N трубы ниж.налива",    //177
-"N трубы вер.налива",    //178
+"N поста ниж.налива",    //177
+"N поста вер.налива",    //178
 #else
 "",                        //177
 "",                        //178
@@ -3614,11 +3614,11 @@ m_m5_01:
           #if defined(N_Pipes)
             if(valve_mode) 
             {
-              MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу. Труба N%d ",n_pipe_h);
+              MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу. Пост N%d ",n_pipe_h);
             }
             else
             {
-              MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу. Труба N%d ",n_pipe_l);
+              MmiGotoxy(0,4);    MmiPrintf("1 Задать дозу. Пост N%d ",n_pipe_l);
             }
           #else
             MmiGotoxy(0,4);    MmiPuts("1 Задать дозу ");

@@ -1155,7 +1155,7 @@ struct dis_set_MMI ds_list1[]=
   //-----------
   list1_dsr,
   170,               // Давл.после N анлг.вх
-  &analog_num[4],
+  &analog_num[3],
   0,
   8,
   T_INT,
