@@ -4012,7 +4012,7 @@ struct dis_set  ds_fls[2]=
 };
 
 //----------------------
-struct dis_set  ds_mdt[2]=
+struct dis_set  ds_mdt[]=
 {
 /*----------------*/
   &mode_temp,
@@ -4024,6 +4024,14 @@ struct dis_set  ds_mdt[2]=
   0,
   1,
   T_INT,
+/*----------------*/
+//18.11.2021 YN
+#if defined(weightedAverageTemperature)
+  &waTempOn,
+  0,
+  1,
+  T_INT,
+#endif
 /*----------------*/
 };
 
@@ -5227,7 +5235,13 @@ m1:
 //---------------------------------
       if (!strcmp(intrpr.wrd,"MDT" ))
         {   //'MDT'
-         if( f_dis_set(ds_mdt,3,2))
+
+         //18.11.2021 YN
+         #if defined(weightedAverageTemperature)
+          if( f_dis_set(ds_mdt,3,3))
+         #else
+          if( f_dis_set(ds_mdt,3,2))
+         #endif
            f_init_DNSA();
 
           goto fin;

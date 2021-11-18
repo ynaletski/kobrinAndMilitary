@@ -1534,6 +1534,17 @@ struct dis_set_MMI ds_list1[]=
   T_INT,
 #endif
 
+//18.11.2021 YN
+#if defined(weightedAverageTemperature)
+//----------------
+  list1_dsr,        // "Средневзвеш.темп."
+  179,
+  &waTempOn,
+  0,
+  1,
+  T_INT,
+//-----------
+#endif
 
 //-----------
   NULL,
@@ -2064,6 +2075,11 @@ union  { float f; char c[4]; } o;
 
   GetTimeDate(&t);
 
+  //18.11.2021 YN
+  #if defined(weightedAverageTemperature)
+    waTemp = waTemp + (s_MVD[0].Temp * ((float)(mas_ch_cur - mas_ch_cur_old)));
+    mas_ch_cur_old=mas_ch_cur;
+  #endif
 
   if(FlagWinSum)
    {

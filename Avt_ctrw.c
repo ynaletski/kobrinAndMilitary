@@ -723,7 +723,7 @@ else if((Flag_Low == 0) && ( Flag_mass!=0 )) f_reg_cmn( 24 );
 else
      f_reg_cmn( 12 );
    }
-   else if( ( STOP_IN)==0)
+   else if( ( ( STOP_IN==0) && ( Flag_Low == 0) ) || ( ( STOP_IN_L==0) && ( Flag_Low != 0) ))
    {
        MmiGotoxy(0,1);   MmiPuts(list_avt[30]);  //" Отпуск остановлен            ",//30
        MmiGotoxy(0,2);   MmiPuts(list_avt[33]);  //"     Нажата кнопка =STOP=     ",//31
@@ -816,6 +816,13 @@ m_err_mvd:
 
     if( MVD_t_rslt[0]>0)
     {
+
+       //18.11.2021 YN
+       #if defined(weightedAverageTemperature)
+         waTemp = 0.0;
+         mas_ch_cur_old=mas_ch_cur;
+       #endif
+
        sw_dlv_liq=11;
 //     MmiGotoxy(0,1);  MmiPuts("Включение потока жидкости    ");
        MmiGotoxy(0,1);  MmiPuts(list_avt[10]);

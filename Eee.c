@@ -565,7 +565,14 @@ struct eee_dat EE_Dat[]=
 &fict_ftmp,sizeof( fict_ftmp ),
 &fict_ftmp,sizeof( fict_ftmp ),
 &fict_ftmp,sizeof( fict_ftmp ),
+
+//18.11.2021 YN
+#if defined(weightedAverageTemperature)
+  &waTempOn,sizeof( waTempOn ),
+  &fict_itmp,sizeof( fict_itmp ),
+#else
 &fict_ftmp,sizeof( fict_ftmp ),
+#endif
 
 //11.06.2021 YN
 #if defined(PresenceLiquid)

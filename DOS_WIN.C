@@ -519,7 +519,21 @@ void f_prn_proc()
               if( flag_AD != 0)
               {
                 MmiGotoxy(0,8);  MmiPrintf("Плотн.средняя %7.2f кг/м3   ",Dens_a);
-                MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ",Temp_a);
+
+                //18.11.2021 YN
+                #if defined(weightedAverageTemperature)
+                  if( waTempOn ) 
+                  {
+                    MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ", (waTemp/s_MVD[0].MassT) );
+                  }
+                  else 
+                  {
+                    MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ",Temp_a);
+                  }
+                #else
+                  MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ",Temp_a);
+                #endif
+
                 MmiGotoxy(0,10); MmiPuts( str_empt );
                 MmiGotoxy(0,11); MmiPuts( str_empt );
                 MmiGotoxy(0,12); MmiPrintf("Давление     %8.3f МПа     ",s_MVD[0].Press);
@@ -2607,6 +2621,13 @@ char *list1_dsr[]={
 #else
 "",                        //177
 "",                        //178
+#endif
+
+//18.11.2021 YN
+#if defined(weightedAverageTemperature)
+"Средневзвеш.темп.",       //179
+#else
+"",                        //179
 #endif
 
 "",

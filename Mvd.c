@@ -1398,6 +1398,11 @@ void f_MVD_rd(int ii)
         if(ftmp <=0) ftmp=0.00000001;
         s_MVD[nn].Dens = ftmp;
 
+        //18.11.2021 YN
+        #if defined(weightedAverageTemperature)
+          mas_ch_cur = s_MVD[nn].MassT;
+        #endif
+
         s_MVD[nn].Temp=  f_get_float( &cb_COM[ii][8], 1);
         s_MVD[nn].MassI=  f_get_float( &cb_COM[ii][12], 1);
         s_MVD[nn].VolI =  f_get_float( &cb_COM[ii][16], 1);
@@ -1440,6 +1445,11 @@ void f_MVD_rd(int ii)
 
         s_MVD[nn].MassT=   f_get_float( &cb_COM[ii][28], 1);
         s_MVD[nn].VolT =   f_get_float( &cb_COM[ii][32], 1);  // *1000
+
+        //18.11.2021 YN
+        #if defined(weightedAverageTemperature)
+          mas_ch_cur = s_MVD[nn].MassT;
+        #endif
 
         s_MVD[nn].MassI=   f_get_float( &cb_COM[ii][36], 1);
         s_MVD[nn].VolI =   f_get_float( &cb_COM[ii][40], 1);  // *1000
@@ -2720,6 +2730,10 @@ int nn=0;
         Sim_VolI +=ftmp;
        }
 
+        //18.11.2021 YN
+        #if defined(weightedAverageTemperature)
+          mas_ch_cur = s_MVD[nn].MassT;
+        #endif
 
         //рассчитывает падение давления вследствие скорости
         s_MVD[0].PressB= FctBern*s_MVD[0].FlowM*s_MVD[0].FlowM/s_MVD[0].Dens;
