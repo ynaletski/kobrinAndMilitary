@@ -819,8 +819,11 @@ m_err_mvd:
 
        //18.11.2021 YN
        #if defined(weightedAverageTemperature)
-         waTemp = 0.0;
-         mas_ch_cur_old=mas_ch_cur;
+         if(waTempOn)
+         {
+            waTemp = 0.0;
+            mas_ch_cur_old=mas_ch_cur;
+         }
        #endif
 
        sw_dlv_liq=11;

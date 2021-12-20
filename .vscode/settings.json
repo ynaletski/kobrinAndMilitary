@@ -16,7 +16,7 @@
         "COR_ADC.H": "cpp",
         "DELTA.H": "cpp",
         "MMI.H": "cpp",
-        "REF_T.H": "cpp",
+        "REF_T.H": "c",
         "QUEUE.H": "cpp"
     }
 }

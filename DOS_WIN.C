@@ -524,7 +524,21 @@ void f_prn_proc()
                 #if defined(weightedAverageTemperature)
                   if( waTempOn ) 
                   {
-                    MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ", (waTemp/s_MVD[0].MassT) );
+                    if(s_MVD[0].MassT != 0)
+                    {
+                      MmiGotoxy(0,9 ); MmiPrintf("Темп.средняя  %7.2f C       ", (waTemp/s_MVD[0].MassT) );
+                    }
+                    else
+                    {
+                      if ((mode_temp==EXT) && (s_MVD[0].TempR > -49.5) )
+                      {
+                        MmiGotoxy(0,9); MmiPrintf("Температура   %7.2f C        ",s_MVD[0].TempR);
+                      }
+                      else
+                      {
+                        MmiGotoxy(0,9); MmiPrintf("Темпер.MVD    %7.2f C        ",s_MVD[0].Temp);
+                      }
+                    }
                   }
                   else 
                   {

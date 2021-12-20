@@ -1400,7 +1400,10 @@ void f_MVD_rd(int ii)
 
         //18.11.2021 YN
         #if defined(weightedAverageTemperature)
-          mas_ch_cur = s_MVD[nn].MassT;
+          if(waTempOn)
+          {
+            mas_ch_cur = s_MVD[nn].MassT;
+          }
         #endif
 
         s_MVD[nn].Temp=  f_get_float( &cb_COM[ii][8], 1);
@@ -1448,7 +1451,10 @@ void f_MVD_rd(int ii)
 
         //18.11.2021 YN
         #if defined(weightedAverageTemperature)
-          mas_ch_cur = s_MVD[nn].MassT;
+          if(waTempOn)
+          {
+            mas_ch_cur = s_MVD[nn].MassT;
+          }
         #endif
 
         s_MVD[nn].MassI=   f_get_float( &cb_COM[ii][36], 1);
@@ -2732,7 +2738,10 @@ int nn=0;
 
         //18.11.2021 YN
         #if defined(weightedAverageTemperature)
-          mas_ch_cur = s_MVD[nn].MassT;
+          if(waTempOn)
+          {
+            mas_ch_cur = s_MVD[nn].MassT;
+          }
         #endif
 
         //рассчитывает падение давления вследствие скорости

@@ -2077,8 +2077,20 @@ union  { float f; char c[4]; } o;
 
   //18.11.2021 YN
   #if defined(weightedAverageTemperature)
-    waTemp = waTemp + (s_MVD[0].Temp * ((float)(mas_ch_cur - mas_ch_cur_old)));
-    mas_ch_cur_old=mas_ch_cur;
+    if(waTempOn)
+    {
+
+      if ((mode_temp==EXT) && (s_MVD[0].TempR > -49.5) )
+      {
+        waTemp = waTemp + (s_MVD[0].TempR * ((float)(mas_ch_cur - mas_ch_cur_old)));
+      }
+      else
+      {
+        waTemp = waTemp + (s_MVD[0].Temp * ((float)(mas_ch_cur - mas_ch_cur_old)));
+      }
+      //waTemp = waTemp + (s_MVD[0].Temp * ((float)(mas_ch_cur - mas_ch_cur_old)));
+      mas_ch_cur_old=mas_ch_cur;
+    }
   #endif
 
   if(FlagWinSum)
